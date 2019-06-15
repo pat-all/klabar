@@ -1,0 +1,42 @@
+.player-stats {
+    height: 100%;
+    width: 300px;
+    background-color: #3F729B;
+    display: grid;
+    grid-template-columns: 40% 40% 20%;
+    grid-template-rows: 30% 30% 30%;
+    grid-template-areas: 
+        "nameLabel playerName playerName"
+        "scoreLable playerScore ."
+        "boltLabel boltCounter btn";
+    align-content: space-around;
+}
+
+.name-label {
+    grid-area: nameLabel;
+}
+
+.player-name {
+    grid-area: playerName;
+}
+
+.score-label {
+    grid-area: scoreLable;
+}
+
+.player-score {
+    grid-area: playerScore;
+}
+
+.bolt-label {
+    grid-area: boltLabel;
+}
+
+.bolt-counter {
+    grid-area: boltCounter;
+}
+
+.edit-btn {
+    grid-area: btn;
+    border-radius: 5px;
+}

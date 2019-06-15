@@ -1,0 +1,9 @@
+.game-note {
+    width: 100%;
+    background-color: #929fba;
+    height: 100px;
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+    column-gap: 3px;
+}
