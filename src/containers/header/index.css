@@ -10,11 +10,6 @@
     grid-column-gap: 3px;
 }
 
-.right-side-btn {
-    height: 50px;
-    width: 50px;
-}
-
 .right-btns {
     display: grid;
 }

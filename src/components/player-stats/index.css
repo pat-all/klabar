@@ -6,9 +6,9 @@
     grid-template-columns: 40% 40% 20%;
     grid-template-rows: 30% 30% 30%;
     grid-template-areas: 
-        "nameLabel playerName playerName"
+        "nameLabel playerName edit-btn"
         "scoreLable playerScore ."
-        "boltLabel boltCounter btn";
+        "boltLabel boltCounter rem-btn";
     align-content: space-around;
 }
 
@@ -36,7 +36,10 @@
     grid-area: boltCounter;
 }
 
-.edit-btn {
-    grid-area: btn;
-    border-radius: 5px;
+.edit-player-btn {
+    grid-area: edit-btn;
+}
+
+.remove-player-btn {
+    grid-area: rem-btn;
 }

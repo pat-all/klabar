@@ -1,10 +1,10 @@
 import React  from 'react'
 import { Provider } from 'react-redux'
-import configureStore from '../configurestore'
-import App from '../App';
-import preloadedStore from '../preloadedStore';
+import configureStore from '../../configurestore'
+import App from '../../App';
+import preloadedStore from '../../preloadedStore';
 
-import '../index.css';
+import '../../index.css';
 
 const store = configureStore(preloadedStore);
 
