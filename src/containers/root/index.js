@@ -1,8 +1,11 @@
 import React  from 'react'
 import { Provider } from 'react-redux'
-import configureStore from '../../configurestore'
+
 import App from '../../App';
-import preloadedStore from '../../preloadedStore';
+import Modal from '../modal';
+
+import { preloadedStore } from '../../preloadedStore';
+import configureStore from '../../configurestore'
 
 import '../../index.css';
 
@@ -12,6 +15,7 @@ const Root = () => {
     return (
       <Provider store={store}>
         <App />
+        <Modal />
       </Provider>
     )
 }

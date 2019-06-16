@@ -1,13 +1,13 @@
-import { ADD_PLAYER, EDIT_PLAYER, REMOVE_PLAYER } from './constants';
+import { ADD_PLAYER, REMOVE_PLAYER, CHANGE_USER_NAME, TOGGLE_OPTIONS_WINDOW, TOGGLE_PLAYER_EDIT_MODE } from './constants';
 
-export const addPlayer = () => {
-    return({type: ADD_PLAYER});
-};
+/* PLayer's actions */
+export const addPlayer = () => ({type: ADD_PLAYER});
 
-export const editPlayer = (id) => {
-    return ({type: EDIT_PLAYER, id})
-}
+export const removePlayer = (id) => ({type: REMOVE_PLAYER, id});
 
-export const removePlayer = (id) => {
-    return ({type: REMOVE_PLAYER, id})
-}
+export const togglePlayerEditMode = (id) => ({type: TOGGLE_PLAYER_EDIT_MODE, id});
+
+export const changeUserName = (id, name) => ({type: CHANGE_USER_NAME, id, name});
+
+/*game Options actions */
+export const toggleOptionsWindow = () => ({type: TOGGLE_OPTIONS_WINDOW});

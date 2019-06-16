@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import PlayerStats from "../../components/player-stats";
 
 //actions import
-import {addPlayer, removePlayer} from '../../actions';
+import {addPlayer, removePlayer, togglePlayerEditMode, changeUserName, toggleOptionsWindow} from '../../actions';
 
 //styles import
 import "./index.css";
@@ -13,13 +13,24 @@ import "./index.css";
 //import icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const MainHeader = ({players, num, addNewPlayer, remove}) => {
+const MainHeader = ({players, playersCount, addNewPlayer, remove, toggleEditMode, changeName, toggleOptWindow}) => {
     return (
         <div className="main-header">
-            {players.map((player, index)=><PlayerStats key={player.id} num={num} name={player.name} score={player.score} bolts={player.bolts} id={index} remove={remove}/>)}
+            {players.map((player, index)=><PlayerStats 
+                key={index} 
+                playersCount={playersCount} 
+                name={player.name.value} 
+                score={player.score} 
+                bolts={player.bolts} 
+                id={index} 
+                remove={remove}
+                editMode={player.name.editMode}
+                toggleEditMode={toggleEditMode}
+                changeName={changeName}
+            />)}
             <div className="right-btns">
-                <button onClick={addNewPlayer} disabled={num >= 4}><FontAwesomeIcon icon="user-plus" size="2x"/></button>
-                <button>btn 2</button>
+                <button onClick={addNewPlayer} disabled={playersCount >= 4}><FontAwesomeIcon icon="user-plus" size="2x"/></button>
+                <button onClick={toggleOptWindow}><FontAwesomeIcon icon="sliders-h" size="2x"/></button>
                 <button>btn 3</button>
             </div>
             
@@ -27,11 +38,14 @@ const MainHeader = ({players, num, addNewPlayer, remove}) => {
     )
 }
 
-const mapStateToProps = state => ({players: state.players, num: state.players.length});
+const mapStateToProps = state => ({players: state.players, playersCount: state.players.length});
 
 const mapDispatchToProps = dispatch => ({
     addNewPlayer: () => dispatch(addPlayer()),
-    remove: (id) => dispatch(removePlayer(id))
+    remove: (id) => dispatch(removePlayer(id)),
+    toggleEditMode: (id) => dispatch(togglePlayerEditMode(id)),
+    changeName: (id, name) => dispatch(changeUserName(id, name)),
+    toggleOptWindow: () => dispatch(toggleOptionsWindow()),
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(MainHeader);

@@ -1,21 +1,17 @@
-const preloadedStore = {
+ export const playerShape = () =>({
+    name: {value: "Player", editMode: false},
+    score: 0,
+    bolts: 0,
+    gameNotes: [],
+ })
+ 
+ 
+ export const preloadedStore = {
         players: [
-            {
-                name: "Player",
-                score: 0,
-                bolts: 0,
-                gameNotes: [],
-            },
-            {
-                name: "Player",
-                score: 0,
-                bolts: 0,
-                gameNotes: [],
-            },
+            playerShape(), playerShape()
         ], 
         gameOptions: {
-            winScore: 1000
+            winScore: 1000,
+            modalOn: false,
         }
 };
-
-export default preloadedStore;
