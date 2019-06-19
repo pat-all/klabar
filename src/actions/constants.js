@@ -4,7 +4,11 @@ export const EDIT_PLAYER = 'EDIT_PLAYER';
 export const REMOVE_PLAYER = 'REMOVE_PLAYER';
 export const TOGGLE_PLAYER_EDIT_MODE = 'TOGGLE_PLAYER_EDIT_MODE';
 export const CHANGE_USER_NAME = 'CHANGE_USER_NAME';
+export const ADD_PLAYER_NOTE = 'ADD_NEW_PLAYER_NOTE';
 
 /* Game Options constants */
 export const SET_WIN_SCORE = 'SET_WIN_SCORE';
 export const TOGGLE_OPTIONS_WINDOW = 'TOGGLE_OPTIONS_WINDOW';
+
+/*Game Notes constants */
+export const ADD_GAME_NOTE = 'ADD_GAME_NOTE';

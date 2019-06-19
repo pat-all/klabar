@@ -2,7 +2,16 @@
     name: {value: "Player", editMode: false},
     score: 0,
     bolts: 0,
-    gameNotes: [],
+    playerNotes: [],
+ });
+
+ export const playerNote = () => ({
+     score: 0,
+     bolt: false,
+ });
+
+ export const gameNote = () =>({
+     stake: 162,
  })
  
  
@@ -10,6 +19,7 @@
         players: [
             playerShape(), playerShape()
         ], 
+        gameNotes: [],
         gameOptions: {
             winScore: 1000,
             modalOn: false,

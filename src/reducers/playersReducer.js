@@ -1,8 +1,9 @@
 import { ADD_PLAYER, 
     REMOVE_PLAYER, 
     CHANGE_USER_NAME, 
-    TOGGLE_PLAYER_EDIT_MODE} from "../actions/constants";
-import { playerShape } from "../preloadedStore";
+    TOGGLE_PLAYER_EDIT_MODE,
+    ADD_PLAYER_NOTE} from "../actions/constants";
+import { playerShape, playerNote } from "../preloadedStore";
 
 const players = (state = [], {type, id, name}) => {
     switch(type) {
@@ -24,6 +25,11 @@ const players = (state = [], {type, id, name}) => {
             const reNamedPalyers = [...state];
             reNamedPalyers[id].name.value = name;
             return reNamedPalyers;
+        case ADD_PLAYER_NOTE:
+            return state.map((player)=> {
+                const gameNotes = [...player.playerNotes, playerNote()]
+                return {...player, gameNotes}
+            })
         default: 
             return state;
     }
