@@ -6,7 +6,7 @@ import "./index.css";
 //import icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const PlayerNote = ({entity, setScore, playerId, noteId}) => {
+const PlayerNote = ({entity, setScore, playerId, noteId, setTrump}) => {
     return(
         <div className="player-note">
             <div className="stats">
@@ -16,7 +16,7 @@ const PlayerNote = ({entity, setScore, playerId, noteId}) => {
                 </div>
             </div>
             <button><FontAwesomeIcon icon="edit" size="2x"/></button>
-            <button>trump</button>  {/* козырь */}
+            <button onClick={()=>setTrump(playerId, noteId)}>trump</button>  {/* козырь */}
             <button>culc</button>   {/* вычислить */}  
             <button>cmbn</button>   {/* combos */}     
             <button>fine</button>   {/* штраф */}

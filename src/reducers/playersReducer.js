@@ -4,7 +4,8 @@ import { ADD_PLAYER,
     TOGGLE_PLAYER_EDIT_MODE,
     ADD_PLAYER_NOTE,
     REMOVE_PLAYER_NOTE,
-    SET_PLAYER_NOTE_SCORE} from "../actions/constants";
+    SET_PLAYER_NOTE_SCORE,
+    SET_PLAYER_NOTE_TRUMP} from "../actions/constants";
 import { playerShape, playerNote } from "../preloadedStore";
 
 const players = (state = [], {type, playerId, name, score, noteId}) => {
@@ -40,6 +41,10 @@ const players = (state = [], {type, playerId, name, score, noteId}) => {
             const playersArr = [...state];
             playersArr[playerId].playerNotes[noteId].score = score.length > 0 ? parseInt(score) : score;
             return playersArr;
+        case SET_PLAYER_NOTE_TRUMP:
+            const playerNotesTrump = [...state];
+            playerNotesTrump.map((player, index) => player.playerNotes[noteId].trump = index === playerId);
+            return playerNotesTrump;
 
         default: 
             return state;

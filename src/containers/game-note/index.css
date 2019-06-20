@@ -7,3 +7,10 @@
     justify-content: center;
     column-gap: 3px;
 }
+
+.game-note-bottom-panel {
+    width: 100%;
+    min-height: 50px;
+    height: 50px;
+    background-color: yellow;
+}

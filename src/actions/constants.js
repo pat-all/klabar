@@ -7,6 +7,7 @@ export const CHANGE_USER_NAME = 'CHANGE_USER_NAME';
 export const ADD_PLAYER_NOTE = 'ADD_PLAYER_NOTE';
 export const REMOVE_PLAYER_NOTE = 'REMOVE_PLAYER_NOTE';
 export const SET_PLAYER_NOTE_SCORE = 'SET_PLAYER_NOTE_SCORE';
+export const SET_PLAYER_NOTE_TRUMP = 'SET_PLAYER_NOTE_TRUMP';
 
 /* Game Options constants */
 export const SET_WIN_SCORE = 'SET_WIN_SCORE';

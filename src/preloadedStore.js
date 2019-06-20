@@ -6,7 +6,7 @@
  });
 
  export const playerNote = () => ({
-    score: 0,
+    score: '',
     bolt: false,
     trump: false,
  });

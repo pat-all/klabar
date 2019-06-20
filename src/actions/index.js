@@ -7,6 +7,7 @@ import {
     ADD_PLAYER_NOTE, ADD_GAME_NOTE,
     REMOVE_GAME_NOTE, REMOVE_PLAYER_NOTE,
     SET_PLAYER_NOTE_SCORE,
+    SET_PLAYER_NOTE_TRUMP,
 } from './constants';
 
 /* PLayer's actions */
@@ -22,7 +23,9 @@ export const addPlayerNote = () => ({type: ADD_PLAYER_NOTE});
 
 export const removePlayerNote = (playerId) => ({type: REMOVE_PLAYER_NOTE, playerId});
 
-export const setPlayerNoteScore = (score, playerId, noteId) => ({type: SET_PLAYER_NOTE_SCORE, score, playerId, noteId})
+export const setPlayerNoteScore = (score, playerId, noteId) => ({type: SET_PLAYER_NOTE_SCORE, score, playerId, noteId});
+
+export const setPlayerNoteTrump = (playerId, noteId) =>({type: SET_PLAYER_NOTE_TRUMP, playerId, noteId});
 
 /*game Options actions */
 export const toggleOptionsWindow = () => ({type: TOGGLE_OPTIONS_WINDOW});
