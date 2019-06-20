@@ -2,7 +2,8 @@ import { ADD_PLAYER,
     REMOVE_PLAYER, 
     CHANGE_USER_NAME, 
     TOGGLE_PLAYER_EDIT_MODE,
-    ADD_PLAYER_NOTE} from "../actions/constants";
+    ADD_PLAYER_NOTE,
+    REMOVE_PLAYER_NOTE} from "../actions/constants";
 import { playerShape, playerNote } from "../preloadedStore";
 
 const players = (state = [], {type, id, name}) => {
@@ -26,10 +27,14 @@ const players = (state = [], {type, id, name}) => {
             reNamedPalyers[id].name.value = name;
             return reNamedPalyers;
         case ADD_PLAYER_NOTE:
-            return state.map((player)=> {
+            return state.map(player=> {
                 const playerNotes = [...player.playerNotes, playerNote()]
                 return {...player, playerNotes}
-            })
+            });
+        case REMOVE_PLAYER_NOTE:
+            const removeNotesFromPlayers = [...state];
+            removeNotesFromPlayers.map(player => player.playerNotes.splice(id, 1));
+            return removeNotesFromPlayers;
         default: 
             return state;
     }
