@@ -4,6 +4,9 @@ import {connect} from 'react-redux';
 //import Components
 import GameNote from "../../components/game-note";
 
+//import actions
+
+
 //import styles
 import "./index.css";
 

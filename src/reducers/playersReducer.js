@@ -27,8 +27,8 @@ const players = (state = [], {type, id, name}) => {
             return reNamedPalyers;
         case ADD_PLAYER_NOTE:
             return state.map((player)=> {
-                const gameNotes = [...player.playerNotes, playerNote()]
-                return {...player, gameNotes}
+                const playerNotes = [...player.playerNotes, playerNote()]
+                return {...player, playerNotes}
             })
         default: 
             return state;
