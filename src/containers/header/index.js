@@ -13,7 +13,7 @@ import "./index.css";
 //import icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const MainHeader = ({players, playersCount, addNewPlayer, remove, toggleEditMode, changeName, toggleOptWindow, addGameNote, addPlayerNote}) => {
+const MainHeader = ({players, playersCount, addNewPlayer, remove, toggleEditMode, changeName, toggleOptWindow, addGameNote, addPlayerNote, gameNotesCount}) => {
     return (
         <div className="main-header">
             {players.map((player, index)=><PlayerStats 
@@ -27,10 +27,11 @@ const MainHeader = ({players, playersCount, addNewPlayer, remove, toggleEditMode
                 editMode={player.name.editMode}
                 toggleEditMode={toggleEditMode}
                 changeName={changeName}
+                gameNotesCount={gameNotesCount}
             />)}
             <div className="right-btns">
-                <button onClick={addNewPlayer} disabled={playersCount >= 4}><FontAwesomeIcon icon="user-plus" size="2x"/></button>
-                <button onClick={toggleOptWindow}><FontAwesomeIcon icon="sliders-h" size="2x"/></button>
+                <button onClick={addNewPlayer} disabled={playersCount >= 4 || gameNotesCount > 0}><FontAwesomeIcon icon="user-plus" size="2x"/></button>
+                <button onClick={toggleOptWindow} disabled={gameNotesCount > 0}><FontAwesomeIcon icon="sliders-h" size="2x"/></button>
                 <button onClick={()=>{addGameNote(); addPlayerNote()}}><FontAwesomeIcon icon="plus-square" size="2x"/></button>
             </div>
             
@@ -38,7 +39,7 @@ const MainHeader = ({players, playersCount, addNewPlayer, remove, toggleEditMode
     )
 }
 
-const mapStateToProps = state => ({players: state.players, playersCount: state.players.length});
+const mapStateToProps = state => ({players: state.players, playersCount: state.players.length, gameNotesCount: state.gameNotes.length});
 
 const mapDispatchToProps = dispatch => ({
     addNewPlayer: () => dispatch(addPlayer()),

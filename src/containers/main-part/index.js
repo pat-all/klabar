@@ -2,7 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 
 //import Components
-import GameNote from "../../components/game-note";
+import GameNote from "../game-note";
 
 //import actions
 
@@ -10,16 +10,17 @@ import GameNote from "../../components/game-note";
 //import styles
 import "./index.css";
 
-const MainPart = ({players}) => {
-    //const playerNotes
+const MainPart = ({gameNotes}) => {
     return(
         <div className="main-part">
-            <GameNote/>
+            {gameNotes.map((gameNote, index)=>(
+                <GameNote key={index} noteId={index}/>
+            ))}
         </div>
     );
 }
 
-const mapStateToProps = state => ({players: state.players, playersCount: state.players.length});
+const mapStateToProps = state => ({gameNotes: state.gameNotes});
 
 const mapDispatchToProps = dispatch => ({
     

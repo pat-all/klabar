@@ -1,8 +1,8 @@
 import React from 'react';
 
 /* Components -----> */
-import MainHeader from "./containers/header";
-import MainPart from "./containers/main-part";
+import MainHeader from "../containers/header";
+import MainPart from "../containers/main-part";
 /* <----- Components */
 
 /* Icon library -----> */
