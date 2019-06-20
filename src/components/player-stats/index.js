@@ -6,15 +6,15 @@ import "./index.css";
 //import icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const PlayerStats = ({name, score, bolts, id, remove, playersCount, editMode, toggleEditMode, changeName, gameNotesCount}) => (
+const PlayerStats = ({name, total, bolts, id, remove, playersCount, editMode, toggleEditMode, changeName, gameNotesCount}) => (
     <div className="player-stats">
     <div className="name-label">Name</div>
     {!editMode
         ? <div className="player-name">{name === "Player" ? `${name}-${id + 1}` : name}</div>
         : <input className="player-name" type="text" value={name} onChange={(event)=>changeName(id, event.target.value)}></input>}
-    <div className="score-label">Score</div>
-    <div className="player-score">{score}</div>
-    <div className="bolt-label">Bolt</div>
+    <div className="score-label">Total</div>
+    <div className="player-score">{total}</div>
+    <div className="bolt-label">Bolts</div>
     <div className="bolt-counter">{bolts}</div>
     {!editMode
         ? <button className="edit-player-btn" onClick={() => toggleEditMode(id)}><FontAwesomeIcon icon="user-edit" size="2x" /></button>

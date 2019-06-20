@@ -8,13 +8,13 @@ import "./index.css";
 import PlayerNote from "../../components/player-note";
 
 //import actions
-import { removeGameNote, removePlayerNote } from "../../actions";
+import { removeGameNote, removePlayerNote, setPlayerNoteScore } from "../../actions";
 
-const GameNote = ({noteId, players, removeGameNote, removePlayerNote}) => {
+const GameNote = ({noteId, players, removeGameNote, removePlayerNote, setScore}) => {
     return (
         <div className="game-note">
-            {players.map((player, index)=> (
-                <PlayerNote key={index} entity={player.playerNotes[noteId]}/>
+            {players.map((player, playerId)=> (
+                <PlayerNote key={playerId} entity={player.playerNotes[noteId]} setScore={setScore} playerId={playerId} noteId={noteId}/>
             ))}
             <div className="right-btns">
                 <button className="right-side-btn">btn 1</button>
@@ -29,6 +29,7 @@ const mapStateToProps = state => ({players: state.players});
 const mapDispatchToProps = dispatch => ({
     removeGameNote: id => dispatch(removeGameNote(id)),
     removePlayerNote: id => dispatch(removePlayerNote(id)),
+    setScore: (score, playerId, noteId) => dispatch(setPlayerNoteScore(score, playerId, noteId)),
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(GameNote);

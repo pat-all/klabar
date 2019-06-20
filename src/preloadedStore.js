@@ -1,17 +1,18 @@
  export const playerShape = () =>({
     name: {value: "Player", editMode: false},
-    score: 0,
+    total: 0,
     bolts: 0,
     playerNotes: [],
  });
 
  export const playerNote = () => ({
-     score: 0,
-     bolt: false,
+    score: 0,
+    bolt: false,
+    trump: false,
  });
 
  export const gameNote = () =>({
-     stake: 162,
+    stake: 162,
  })
  
  
