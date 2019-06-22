@@ -11,7 +11,7 @@ const PlayerStats = ({name, total, bolts, id, remove, playersCount, editMode, to
     <div className="name-label">Name</div>
     {!editMode
         ? <div className="player-name">{name === "Player" ? `${name}-${id + 1}` : name}</div>
-        : <input className="player-name" type="text" value={name} onChange={(event)=>changeName(id, event.target.value)}></input>}
+        : <input className="player-name" type="text" defaultValue={name} onChange={(event)=>changeName(id, event.target.value)}></input>}
     <div className="score-label">Total</div>
     <div className="player-score">{total}</div>
     <div className="bolt-label">Bolts</div>

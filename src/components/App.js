@@ -7,9 +7,9 @@ import MainPart from "../containers/main-part";
 
 /* Icon library -----> */
 import { library } from '@fortawesome/fontawesome-svg-core';
-import { faEdit, faUserPlus, faUserTimes, faUserEdit, faUserCheck, faSlidersH, faWindowClose, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
+import { faEdit, faUserPlus, faUserTimes, faUserEdit, faUserCheck, faSlidersH, faWindowClose, faPlusSquare, faCrown, faCalculator, faCheckSquare, faThumbsDown, faClone } from '@fortawesome/free-solid-svg-icons';
 
-library.add(faEdit, faUserPlus, faUserTimes, faUserEdit, faUserCheck, faSlidersH, faWindowClose, faPlusSquare);
+library.add(faEdit, faUserPlus, faUserTimes, faUserEdit, faUserCheck, faSlidersH, faWindowClose, faPlusSquare, faCrown, faCalculator, faCheckSquare, faThumbsDown, faClone);
 /* <----- Icon library */
 
 const App = () => {

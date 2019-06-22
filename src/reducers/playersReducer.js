@@ -39,7 +39,7 @@ const players = (state = [], {type, playerId, name, score, noteId}) => {
             return removeNotesFromPlayers;
         case SET_PLAYER_NOTE_SCORE:
             const playersArr = [...state];
-            playersArr[playerId].playerNotes[noteId].score = score.length > 0 ? parseInt(score) : score;
+            playersArr[playerId].playerNotes[noteId].score = score.length > 0 ? Number(score) : score;
             return playersArr;
         case SET_PLAYER_NOTE_TRUMP:
             const playerNotesTrump = [...state];

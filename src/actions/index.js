@@ -8,6 +8,8 @@ import {
     REMOVE_GAME_NOTE, REMOVE_PLAYER_NOTE,
     SET_PLAYER_NOTE_SCORE,
     SET_PLAYER_NOTE_TRUMP,
+    SET_GAME_NOTE_STAKE,
+    SET_GAME_NOTE_REST_CARDS,
 } from './constants';
 
 /* PLayer's actions */
@@ -34,3 +36,7 @@ export const toggleOptionsWindow = () => ({type: TOGGLE_OPTIONS_WINDOW});
 export const addGameNote = () => ({type: ADD_GAME_NOTE});
 
 export const removeGameNote = (noteId) => ({type: REMOVE_GAME_NOTE, noteId});
+
+export const setGameNoteStake = (noteId, stake) => ({type: SET_GAME_NOTE_STAKE, noteId, stake});
+
+export const setGameNoteRestCards = (noteId, restCards) => ({type: SET_GAME_NOTE_REST_CARDS, noteId, restCards});

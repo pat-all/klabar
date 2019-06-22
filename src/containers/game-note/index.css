@@ -1,7 +1,7 @@
 .game-note {
     width: 100%;
     background-color: #929fba;
-    height: 100px;
+    height: 150px;
     display: grid;
     grid-auto-flow: column;
     justify-content: center;
@@ -13,4 +13,13 @@
     min-height: 50px;
     height: 50px;
     background-color: yellow;
+    align-self: end;
+    grid-row-start: 2;
+}
+
+.players-notes {
+    display: grid;
+    grid-auto-flow: column;
+    justify-content: center;
+    column-gap: 3px;
 }

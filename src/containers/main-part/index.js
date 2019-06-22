@@ -14,7 +14,7 @@ const MainPart = ({gameNotes}) => {
     return(
         <div className="main-part">
             {gameNotes.map((gameNote, index)=>(
-                <GameNote key={index} noteId={index}/>
+                <GameNote key={index} noteId={index} gameNote={gameNote}/>
             ))}
         </div>
     );
