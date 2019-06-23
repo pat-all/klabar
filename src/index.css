@@ -17,3 +17,35 @@ button {
   width: 45px;
   border-radius: 5px;
 }
+
+.bg-success {
+  background-color: #00C851;
+}
+
+.bg-warning {
+  background-color: #ffbb33;
+}
+
+.bg-danger {
+  background-color: #ff4444;
+}
+
+.bg-info {
+  background-color: #33b5e5;
+}
+
+.bg-primary {
+  background-color: #4285F4;
+}
+
+.bg-default {
+  background-color: #2BBBAD;
+}
+
+.bg-secondary {
+  background-color: #aa66cc;
+}
+
+.bg-white {
+  background-color: white;
+}

@@ -10,9 +10,9 @@ import "./index.css";
 import PlayerNote from "../../components/player-note";
 
 //import actions
-import { removeGameNote, removePlayerNote, setPlayerNoteScore, setPlayerNoteTrump, setGameNoteStake, setGameNoteRestCards,} from "../../actions";
+import { removeGameNote, removePlayerNote, setPlayerNoteScore, setPlayerNoteTrump, setGameNoteStake, setGameNoteRestCards, setPlayerNoteFine, calculatePlayerScore, playerCheck} from "../../actions";
 
-const GameNote = ({noteId, players, removeGameNote, removePlayerNote, setScore, setTrump, gameNote, setStake, setRestCards}) => {
+const GameNote = ({noteId, players, removeGameNote, removePlayerNote, setScore, setTrump, setFine, gameNote, setStake, setRestCards, calculate, checkPl}) => {
     const {stake, restCards} = gameNote;
     const stakes = [162, 182, 202, 212, 222, 232, 252, 262, 272, 282, 302, 312, 322, 332, 352, 362, 382, 402, 412, 422, 432, 442, 452, 462, 472, 482];
     /* for(let i = 162; i < 482; i + 10){
@@ -29,6 +29,11 @@ const GameNote = ({noteId, players, removeGameNote, removePlayerNote, setScore, 
                         setScore={setScore} playerId={playerId} 
                         noteId={noteId}
                         setTrump={setTrump}
+                        setFine={setFine}
+                        calculate={calculate}
+                        stake={stake}
+                        restCards={restCards}
+                        checkPl={checkPl}
                     />
                 ))}
                 <div className="right-btns">
@@ -38,13 +43,13 @@ const GameNote = ({noteId, players, removeGameNote, removePlayerNote, setScore, 
             </div>
             <div className='game-note-bottom-panel'> 
                 <label htmlFor={'stake' + noteId}> Stake </label>
-                <select defaultValue={stake} onChange={event=>setStake(noteId, event.target.value)} name={'stake' + noteId}>
+                <select defaultValue={stake} onChange={event=>{setStake(noteId, event.target.value);checkPl(noteId)}} name={'stake' + noteId}>
                     {stakes.map(stake=>
                         <option key={stake}>{stake}</option>
                     )}
                 </select>
                 <label>Rest Cards</label>
-                <input type="number" defaultValue={restCards} onChange={event=>setRestCards(noteId, event.target.value)}></input>
+                <input type="number" defaultValue={restCards} onChange={event=>{setRestCards(noteId, event.target.value); checkPl(noteId)}}></input>
             </div> 
             
         </div>
@@ -58,8 +63,11 @@ const mapDispatchToProps = dispatch => ({
     removePlayerNote: id => dispatch(removePlayerNote(id)),
     setScore: (score, playerId, noteId) => dispatch(setPlayerNoteScore(score, playerId, noteId)),
     setTrump: (playerId, noteId) => dispatch(setPlayerNoteTrump(playerId, noteId)),
+    setFine: (playerId, noteId) => dispatch(setPlayerNoteFine(playerId, noteId)),
     setStake: (noteId, stake) => dispatch(setGameNoteStake(noteId, stake)),
     setRestCards: (noteId, restCards) => dispatch(setGameNoteRestCards(noteId, restCards)),
+    calculate: (playerId, noteId, stake, restCards) => dispatch(calculatePlayerScore(playerId, noteId, stake, restCards)),
+    checkPl: (noteId) => dispatch(playerCheck(noteId)),
 })
 
 export default connect (mapStateToProps, mapDispatchToProps)(GameNote);

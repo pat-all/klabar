@@ -9,6 +9,8 @@
    score: '',
    bolt: false,
    trump: false,
+   fine: false,
+   check: false,
  });
 
  export const gameNote = () =>({
