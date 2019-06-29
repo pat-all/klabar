@@ -7,11 +7,11 @@ import {bgColors} from '../../colorClasses';
 //import icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const PlayerNote = ({entity, setScore, playerId, noteId, setTrump, setFine, calculate, stake, restCards,}) => {
+const PlayerNote = ({entity, setScore, playerId, noteId, setTrump, setFine, calculate, stake, restCards, gameOptions,}) => {
     const {score, trump, bolt, fine,} = entity;
     const crownBtnClassName = bolt ?  bgColors.danger : trump ? bgColors.warning : bgColors.white;
     const thumpBtnClassName = fine ? bgColors.danger : bgColors.white;
-    console.log('restCards: ' + restCards);
+    //console.log('restCards: ' + restCards);
     return(
         <div className="player-note">
             <div className="stats">

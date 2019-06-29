@@ -8,11 +8,12 @@ import { ADD_PLAYER,
     SET_PLAYER_NOTE_TRUMP,
     SET_PLAYER_NOTE_FINE,
     CALCULATE_PLAYER_SCORE,
-    PLAYER_CHECK
+    PLAYER_CHECK,
+    RECORD_PLAYERS_SCORE
 } from "../actions/constants";
 import { playerShape, playerNote } from "../preloadedStore";
 
-const players = (state = [], {type, playerId, name, score, noteId, stake, restCards}) => {
+const players = (state = [], {type, playerId, name, score, noteId, stake, restCards, gameOptions}) => {
     switch(type) {
         case ADD_PLAYER:
             if (state.length < 4){
@@ -55,7 +56,7 @@ const players = (state = [], {type, playerId, name, score, noteId, stake, restCa
             return playerNotesFine;
         case CALCULATE_PLAYER_SCORE:
             let playerScore = stake - restCards;
-            console.log( 'stake - restCards: ' + playerScore);
+            //console.log( 'stake - restCards: ' + playerScore);
             let playersCalc = [...state];
             for(let i = 0; i < playersCalc.length; i++){
                 if(i !== playerId){
@@ -72,6 +73,68 @@ const players = (state = [], {type, playerId, name, score, noteId, stake, restCa
                 return null;
             });
             return playersCheck;
+        case RECORD_PLAYERS_SCORE:
+            const playersRecords = [...state];
+            const {forfeit} = gameOptions;
+            let maxScorePlayerId = 0;
+
+            /*
+                получаем индекс игрока @maxScorePlayerId который набрал максимум очков за раздачу
+            */
+            for(let i = 0; i < playersRecords.length; i++){
+                if(playersRecords[maxScorePlayerId].playerNotes[noteId].score < playersRecords[i].playerNotes[noteId].score) maxScorePlayerId = i;
+            } 
+        
+            for(let i = 0; i < playersRecords.length; i++){
+
+                //отнимаем штрафные очки @forfeit, если игрок не взял ни единой взятки за раздачу
+                if(playersRecords[i].playerNotes[noteId].score.length === 0){
+                    playersRecords[i].playerNotes[noteId].score -= forfeit;
+                } else if(playersRecords[i].playerNotes[noteId].trump){
+                    if(playersRecords[i].playerNotes[noteId].score === playersRecords[maxScorePlayerId].playerNotes[noteId].score){
+                        /*  если игрок заказывал козырь и его очки равны очкам игрока, индекс которого сохранен 
+                        в @maxScorePlayerId (индекс игрока, набравший максимум очков за раздачу),
+                        то в @maxScorePlayerId сохраняем индекс игрока (он заказал козырь и его очки равны очкам игрока, 
+                        набравшего максимум очков), для того, чтобы далее искать игроков с таким же количеством очков.
+                    */
+                        maxScorePlayerId = i;
+                    /*
+                        если найдено такое совпадение, то игроки получают в запись "яйца" @eggs = true;
+                    */
+                        for(let i = 0; i < playersRecords.length; i++){
+                            if(maxScorePlayerId !== i && playersRecords[maxScorePlayerId].playerNotes[noteId].score === playersRecords[i].playerNotes[noteId].score){
+                                playersRecords[maxScorePlayerId].playerNotes[noteId].eggs = true;
+                                playersRecords[i].playerNotes[noteId].eggs = true;
+                            }
+                        }
+                    } else {
+                        /*
+                            игрок, заказавший козырь, набрал меньше очков, чем игрок с максильным количеством очков, 
+                            то он получает "болт" @bolt = true и 0 очков в запись этой раздачи @score = 0
+                        */
+                        playersRecords[i].playerNotes[noteId].bolt = true;
+                        playersRecords[i].playerNotes[noteId].score = 0;
+                    }
+                } else if(!playersRecords[i].playerNotes[noteId].trump && playersRecords[i].playerNotes[noteId].score === playersRecords[maxScorePlayerId].playerNotes[noteId].score){
+                    /*
+                        если игрок не заказывал козырь и его очки равны очкам игрока, набравшего наибольшее количество очков,
+                        присваиваем переменной в которой записан индекс игрока с наибольшим значением очков 
+                        наш текущий индекс
+                    */
+                    maxScorePlayerId = i;
+                    /* 
+                        ищем игрока с таким же количеством очков и записываем "яйца" @eggs = true;  
+                    */
+                    for(let i = 0; i < playersRecords.length; i++){
+                        if(maxScorePlayerId !== i && playersRecords[maxScorePlayerId].playerNotes[noteId].score === playersRecords[i].playerNotes[noteId].score){
+                            playersRecords[maxScorePlayerId].playerNotes[noteId].eggs = true;
+                            playersRecords[i].playerNotes[noteId].eggs = true;
+                        }
+                    }
+                    
+                }
+            }
+            return playersRecords;
         default: 
             return state;
     }

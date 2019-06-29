@@ -13,6 +13,8 @@ import {
     SET_PLAYER_NOTE_FINE,
     CALCULATE_PLAYER_SCORE,
     PLAYER_CHECK,
+    GAME_NOTE_READY,
+    RECORD_PLAYERS_SCORE,
 } from './constants';
 
 /* PLayer's actions */
@@ -38,6 +40,8 @@ export const calculatePlayerScore = (playerId, noteId, stake, restCards) => ({ty
 
 export const playerCheck = noteId => ({type: PLAYER_CHECK, noteId});
 
+export const recordPlayersScore = (noteId, gameOptions) => ({type: RECORD_PLAYERS_SCORE, noteId, gameOptions});
+
 /*game Options actions */
 export const toggleOptionsWindow = () => ({type: TOGGLE_OPTIONS_WINDOW});
 
@@ -49,3 +53,5 @@ export const removeGameNote = (noteId) => ({type: REMOVE_GAME_NOTE, noteId});
 export const setGameNoteStake = (noteId, stake) => ({type: SET_GAME_NOTE_STAKE, noteId, stake});
 
 export const setGameNoteRestCards = (noteId, restCards) => ({type: SET_GAME_NOTE_REST_CARDS, noteId, restCards});
+
+export const gameNoteReady = noteId => ({type: GAME_NOTE_READY, noteId});

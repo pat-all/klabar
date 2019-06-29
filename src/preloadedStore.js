@@ -10,12 +10,14 @@
    bolt: false,
    trump: false,
    fine: false,
+   eggs: false,
    check: false,
  });
 
  export const gameNote = () =>({
    stake: 162,
    restCards: 0,
+   isReady: false,
  });
  
  
@@ -27,5 +29,6 @@
    gameOptions: {
       winScore: 1000,
       modalOn: false,
+      forfeit: 100,
    }
 };
