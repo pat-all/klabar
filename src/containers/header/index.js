@@ -9,14 +9,36 @@ import {addPlayer, removePlayer, togglePlayerEditMode, changeUserName, toggleOpt
 
 //styles import
 import "./index.css";
+import { bgColors } from '../../colorClasses';
 
 //import icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
-const MainHeader = ({players, playersCount, addNewPlayer, remove, toggleEditMode, changeName, toggleOptWindow, addGameNote, addPlayerNote, gameNotesCount}) => {
+const MainHeader = ({players, playersCount, addNewPlayer, remove, toggleEditMode, changeName, toggleOptWindow, addGameNote, addPlayerNote, gameNotes}) => {
+    const isPlusDisabled = () => {
+        let isDisabled = true;
+        if(gameNotes.length === 0) {
+            isDisabled = false;
+        } else {
+            for(let i = 0; i < gameNotes.length; i++){
+                if(!gameNotes[i].isReady){
+                    isDisabled = true; 
+                    break;
+                } else {
+                    isDisabled = false;
+                }
+                
+            }
+        }
+        return isDisabled;
+    }
+
+    const isDisabled = isPlusDisabled();
+
     return (
         <div className="main-header">
-            {players.map((player, index)=><PlayerStats 
+            {players.map((player, index) =>
+            <PlayerStats 
                 key={index} 
                 playersCount={playersCount} 
                 name={player.name.value} 
@@ -27,19 +49,19 @@ const MainHeader = ({players, playersCount, addNewPlayer, remove, toggleEditMode
                 editMode={player.name.editMode}
                 toggleEditMode={toggleEditMode}
                 changeName={changeName}
-                gameNotesCount={gameNotesCount}
+                gameNotesCount={gameNotes.length}
             />)}
             <div className="right-btns">
-                <button onClick={addNewPlayer} disabled={playersCount >= 4 || gameNotesCount > 0}><FontAwesomeIcon icon="user-plus" size="2x"/></button>
-                <button onClick={toggleOptWindow} disabled={gameNotesCount > 0}><FontAwesomeIcon icon="sliders-h" size="2x"/></button>
-                <button onClick={()=>{addGameNote(); addPlayerNote()}}><FontAwesomeIcon icon="plus-square" size="2x"/></button>
+                <button onClick={addNewPlayer} disabled={playersCount >= 4 || gameNotes.length > 0}><FontAwesomeIcon icon="user-plus" size="2x"/></button>
+                <button onClick={toggleOptWindow} disabled={gameNotes.length > 0}><FontAwesomeIcon icon="sliders-h" size="2x"/></button>
+                <button onClick={()=>{addGameNote(); addPlayerNote()}} className={bgColors.primary} disabled={isDisabled}><FontAwesomeIcon icon="plus-square" size="2x"/></button>
             </div>
             
         </div>
     )
 }
 
-const mapStateToProps = state => ({players: state.players, playersCount: state.players.length, gameNotesCount: state.gameNotes.length});
+const mapStateToProps = state => ({players: state.players, playersCount: state.players.length, gameNotes: state.gameNotes});
 
 const mapDispatchToProps = dispatch => ({
     addNewPlayer: () => dispatch(addPlayer()),

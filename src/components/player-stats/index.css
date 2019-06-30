@@ -1,7 +1,7 @@
 .player-stats {
     height: 100%;
     width: 300px;
-    background-color: #3F729B;
+    background-color: #d4e157;
     display: grid;
     grid-template-columns: 40% 40% 20%;
     grid-template-rows: 30% 30% 30%;

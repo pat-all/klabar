@@ -13,7 +13,7 @@ import {
     SET_PLAYER_NOTE_FINE,
     CALCULATE_PLAYER_SCORE,
     PLAYER_CHECK,
-    GAME_NOTE_READY,
+    GAME_NOTE_TOGGLE_READY,
     RECORD_PLAYERS_SCORE,
 } from './constants';
 
@@ -28,7 +28,7 @@ export const changeUserName = (playerId, name) => ({type: CHANGE_USER_NAME, play
 
 export const addPlayerNote = () => ({type: ADD_PLAYER_NOTE});
 
-export const removePlayerNote = (playerId) => ({type: REMOVE_PLAYER_NOTE, playerId});
+export const removePlayerNote = (noteId) => ({type: REMOVE_PLAYER_NOTE, noteId});
 
 export const setPlayerNoteScore = (score, playerId, noteId) => ({type: SET_PLAYER_NOTE_SCORE, score, playerId, noteId});
 
@@ -54,4 +54,4 @@ export const setGameNoteStake = (noteId, stake) => ({type: SET_GAME_NOTE_STAKE, 
 
 export const setGameNoteRestCards = (noteId, restCards) => ({type: SET_GAME_NOTE_REST_CARDS, noteId, restCards});
 
-export const gameNoteReady = noteId => ({type: GAME_NOTE_READY, noteId});
+export const gameNoteToggleReady = noteId => ({type: GAME_NOTE_TOGGLE_READY, noteId});

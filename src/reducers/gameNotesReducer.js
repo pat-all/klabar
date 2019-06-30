@@ -1,4 +1,4 @@
-import { ADD_GAME_NOTE, REMOVE_GAME_NOTE, SET_GAME_NOTE_STAKE, SET_GAME_NOTE_REST_CARDS, GAME_NOTE_READY } from "../actions/constants";
+import { ADD_GAME_NOTE, REMOVE_GAME_NOTE, SET_GAME_NOTE_STAKE, SET_GAME_NOTE_REST_CARDS, GAME_NOTE_TOGGLE_READY } from "../actions/constants";
 
 import { gameNote } from "../preloadedStore";
 
@@ -18,9 +18,9 @@ const gameNotes = (state = [], {type, noteId, stake, restCards}) => {
             const restCardsNotes = [...state];
             restCardsNotes[noteId].restCards = restCards.length > 0 ? Number(restCards) : restCards;
             return restCardsNotes;
-        case GAME_NOTE_READY:
+        case GAME_NOTE_TOGGLE_READY:
             const notes = [...state];
-            notes[noteId].isReady = true;
+            notes[noteId].isReady = !notes[noteId].isReady;
             return notes;
         default:
             return state;

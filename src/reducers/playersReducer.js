@@ -48,7 +48,11 @@ const players = (state = [], {type, playerId, name, score, noteId, stake, restCa
             return playersArr;
         case SET_PLAYER_NOTE_TRUMP:
             let players = [...state];
-            players.map((player, index) => player.playerNotes[noteId].trump = index === playerId);
+            players.map((player, index) => {
+                player.playerNotes[noteId].trump = index === playerId;
+                player.playerNotes[noteId].bolt = false;
+                return null;
+            });
             return players;
         case SET_PLAYER_NOTE_FINE:
             const playerNotesFine = [...state];
