@@ -79,8 +79,8 @@ const players = (state = [], {type, playerId, name, score, noteId, stake, restCa
             let maxScorePlayerId = 0;
             /**
              * проверка на "яйца", если несколько игроков с максимальным количеством очков в текущей раздаче,
-             * то их @param {} eggs становится true.
-             * @param {индекс игрока в массиве игроков} index;
+             * то их @eggs становится true.
+             * @param {integer} index - индекс игрока, набравшего наибольшее количесво очков за раздачу;
              */
             const eggsCheck = index => {
                 maxScorePlayerId = index;
@@ -92,7 +92,7 @@ const players = (state = [], {type, playerId, name, score, noteId, stake, restCa
                 }
             }
 
-            /*
+            /**
                 получаем индекс игрока @maxScorePlayerId который набрал максимум очков за раздачу
             */
             for(let i = 0; i < playersRecords.length; i++){
@@ -106,14 +106,14 @@ const players = (state = [], {type, playerId, name, score, noteId, stake, restCa
                     playersRecords[i].playerNotes[noteId].score -= forfeit;
                 } else if(playersRecords[i].playerNotes[noteId].trump){
                     if(playersRecords[i].playerNotes[noteId].score === playersRecords[maxScorePlayerId].playerNotes[noteId].score){
-                        /*  если игрок заказывал козырь и его очки равны очкам игрока, индекс которого сохранен 
+                    /** если игрок заказывал козырь и его очки равны очкам игрока, индекс которого сохранен 
                         в @maxScorePlayerId (индекс игрока, набравший максимум очков за раздачу),
                         то в @maxScorePlayerId сохраняем индекс игрока (он заказал козырь и его очки равны очкам игрока, 
                         набравшего максимум очков), для того, чтобы далее искать игроков с таким же количеством очков.
                     */
                     eggsCheck(i);
                     } else {
-                        /*
+                        /**
                             игрок, заказавший козырь, набрал меньше очков, чем игрок с максильным количеством очков, 
                             то он получает "болт" @bolt = true и 0 очков в запись этой раздачи @score = 0
                         */
@@ -123,8 +123,7 @@ const players = (state = [], {type, playerId, name, score, noteId, stake, restCa
                 } else if(!playersRecords[i].playerNotes[noteId].trump && playersRecords[i].playerNotes[noteId].score === playersRecords[maxScorePlayerId].playerNotes[noteId].score){
                     /*
                         если игрок не заказывал козырь и его очки равны очкам игрока, набравшего наибольшее количество очков,
-                        присваиваем переменной в которой записан индекс игрока с наибольшим значением очков 
-                        наш текущий индекс
+                        делаем проверку на "яйца"
                     */
                     eggsCheck(i);
                     
